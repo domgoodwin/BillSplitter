@@ -22,9 +22,16 @@ namespace BillSplitter
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
+            Button btnSplit = FindViewById<Button>(Resource.Id.Split);
+            EditText txtNumOfPeople = FindViewById<EditText>(Resource.Id.NumOfPeople);
+            EditText txtCost = FindViewById<EditText>(Resource.Id.Cost);
+            EditText txtPercentageTip = FindViewById<EditText>(Resource.Id.Tip);
+            TextView txtvResult = FindViewById<TextView>(Resource.Id.Result);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            btnSplit.Click += (object sender, EventArgs e) =>
+            {
+                txtvResult.Text = TableSplit.CalculateTable(txtNumOfPeople.Text, txtCost.Text, txtPercentageTip.Text);
+            };
         }
     }
 }
